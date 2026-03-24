@@ -2,7 +2,10 @@
 
 Habla y el texto aparece donde tengas el cursor. En cualquier app.
 
-Combina lo mejor de [sflow](https://github.com/jtabasco/sflow) (Joel Tabasco) y [VozFlow](https://github.com/jorgetorresbiz/vozflow) (Jorge Torres) en una sola herramienta.
+DictaFlow nace de [sflow para macOS](https://github.com/daniel-carreon/sflow), la herramienta de dictado por voz creada por Daniel Carreón. 
+Dos miembros de la comunidad [SaaS Factory](https://www.saasfactory.so/) la portaron a Windows de forma independiente:
+[sflow Windows](https://github.com/jtabasco/sflow) por Joel Tabasco y [VozFlow](https://github.com/jorgetorresbiz/vozflow) por Jorge Torres. 
+DictaFlow combina lo mejor de ambas en una sola herramienta: el motor Win32 nativo y el dashboard de Joel con la configuración visual y el selector de micrófono de Jorge.
 
 ---
 
@@ -37,7 +40,7 @@ El instalador:
 2. Instala las dependencias automáticamente
 3. Genera el icono de la app
 4. Te pide la API key de Groq (gratis)
-5. Te pregunta si quieres un acceso directo en el escritorio
+5. Te pregunta si quieres crear un acceso directo en el escritorio (con icono de micrófono) para arrancar DictaFlow sin terminal
 
 ---
 

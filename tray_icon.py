@@ -22,7 +22,7 @@ class TrayIcon(QSystemTrayIcon):
         self._port = dashboard_port
         self._on_settings = on_settings
         self._setup_menu()
-        self.setToolTip(f"{APP_NAME} — Ctrl+Alt (hold) · Shift×2 (hands-free)")
+        self.setToolTip(f"{APP_NAME} v2 — Ctrl+Alt (hold) · Shift×2 (hands-free)")
 
     def _create_icon(self) -> QIcon:
         """Create a simple colored circle icon."""

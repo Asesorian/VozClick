@@ -27,7 +27,7 @@ Combina lo mejor de [sflow](https://github.com/jtabasco/sflow) (Joel Tabasco) y 
 ## 🚀 Instalación
 
 ```bash
-git clone https://github.com/TU_USUARIO/dictaflow.git
+git clone https://github.com/Asesorian/dictaflow.git
 cd dictaflow
 install.bat
 ```

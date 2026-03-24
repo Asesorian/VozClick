@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DictaFlow — Historial</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #0f0f0f; color: #e0e0e0; padding: 24px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    h1 { font-size: 1.4rem; color: #b89aff; }
+    .clear-btn { padding: 6px 14px; border-radius: 6px; border: 1px solid #5a2020; background: #2a1010; color: #ff8888; cursor: pointer; font-size: 0.8rem; }
+    .clear-btn:hover { background: #3a1515; border-color: #ff6666; color: #ffaaaa; }
+    .search-bar { display: flex; gap: 8px; margin-bottom: 20px; }
+    .search-bar input { flex: 1; padding: 8px 12px; border-radius: 8px; border: 1px solid #333; background: #1a1a1a; color: #e0e0e0; font-size: 0.95rem; }
+    .search-bar button { padding: 8px 16px; border-radius: 8px; border: none; background: #6b3fc7; color: white; cursor: pointer; }
+    .search-bar button:hover { background: #7e50d9; }
+    .stats { font-size: 0.85rem; color: #888; margin-bottom: 16px; }
+    .card { background: #1a1a1a; border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; position: relative; border-left: 3px solid #6b3fc7; }
+    .card .text { font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; padding-right: 120px; }
+    .card .meta { font-size: 0.78rem; color: #666; }
+    .card .actions { position: absolute; top: 12px; right: 12px; display: flex; gap: 6px; }
+    .card .copy-btn, .card .del-btn { padding: 4px 10px; border-radius: 6px; border: 1px solid #333; background: #222; color: #aaa; cursor: pointer; font-size: 0.78rem; }
+    .card .copy-btn:hover { background: #333; color: #fff; }
+    .card .del-btn { border-color: #442; color: #c88; }
+    .card .del-btn:hover { background: #331515; color: #faa; border-color: #a55; }
+    .pagination { display: flex; gap: 8px; margin-top: 24px; justify-content: center; }
+    .pagination a { padding: 6px 14px; border-radius: 6px; background: #1a1a1a; color: #b89aff; text-decoration: none; border: 1px solid #333; }
+    .pagination a.active { background: #6b3fc7; color: #fff; border-color: #6b3fc7; }
+    .empty { color: #555; text-align: center; padding: 48px; }
+    .footer { text-align: center; margin-top: 32px; color: #444; font-size: 0.75rem; }
+    .confirm-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 100; justify-content: center; align-items: center; }
+    .confirm-overlay.active { display: flex; }
+    .confirm-box { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 24px; text-align: center; max-width: 380px; }
+    .confirm-box p { margin-bottom: 16px; }
+    .confirm-box .btns { display: flex; gap: 12px; justify-content: center; }
+    .confirm-box .btns button { padding: 8px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; }
+    .confirm-box .btn-cancel { background: #333; color: #ccc; }
+    .confirm-box .btn-confirm { background: #c0392b; color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🎙️ DictaFlow — Historial</h1>
+    {% if total > 0 %}
+    <button class="clear-btn" onclick="showClearConfirm()">Borrar todo</button>
+    {% endif %}
+  </div>
+
+  <form class="search-bar" method="get">
+    <input type="text" name="q" placeholder="Buscar transcripciones…" value="{{ search }}">
+    <button type="submit">Buscar</button>
+    {% if search %}<a href="/" style="padding:8px 12px;color:#888;text-decoration:none">✕</a>{% endif %}
+  </form>
+  <p class="stats">{{ total }} transcripción{% if total != 1 %}es{% endif %}{% if search %} para "{{ search }}"{% endif %}</p>
+
+  {% if transcriptions %}
+    {% for t in transcriptions %}
+    <div class="card">
+      <div class="text">{{ t.text }}</div>
+      <div class="meta">{{ t.created_at }} · {{ "%.1f"|format(t.duration) }}s</div>
+      <div class="actions">
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.card').querySelector('.text').textContent)">Copiar</button>
+        <form method="POST" action="/delete/{{ t.id }}?page={{ page }}&q={{ search }}" style="display:inline" onsubmit="return confirm('¿Eliminar esta transcripción?')">
+          <button type="submit" class="del-btn">✕</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <div class="empty">No hay transcripciones{% if search %} que coincidan{% endif %}.</div>
+  {% endif %}
+
+  {% if total_pages > 1 %}
+  <div class="pagination">
+    {% for p in range(1, total_pages + 1) %}
+      <a href="?page={{ p }}&q={{ search }}" {% if p == page %}class="active"{% endif %}>{{ p }}</a>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="footer">DictaFlow — Ctrl+Alt (hold) · Shift×2 (hands-free) · localhost:5678</div>
+
+  <!-- Clear all confirmation -->
+  <div class="confirm-overlay" id="clearConfirm">
+    <div class="confirm-box">
+      <p>¿Borrar <strong>todas</strong> las transcripciones?<br><span style="color:#888;font-size:0.85rem">Esta acción no se puede deshacer.</span></p>
+      <div class="btns">
+        <button class="btn-cancel" onclick="hideClearConfirm()">Cancelar</button>
+        <form method="POST" action="/clear" style="display:inline">
+          <button type="submit" class="btn-confirm">Borrar todo</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showClearConfirm() { document.getElementById('clearConfirm').classList.add('active'); }
+    function hideClearConfirm() { document.getElementById('clearConfirm').classList.remove('active'); }
+    {% if page == 1 and not search %}
+    setTimeout(() => location.reload(), 10000);
+    {% endif %}
+  </script>
+</body>
+</html>

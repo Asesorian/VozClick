@@ -203,6 +203,8 @@ class DictaFlowApp(QObject):
     # --- Refiner flow ---
     @pyqtSlot(str)
     def _on_refine_requested(self, text: str):
+        if self.refine_widget:
+            self.refine_widget.hide()
         if self.config_widget:
             self.config_widget.show_for_text(text)
 

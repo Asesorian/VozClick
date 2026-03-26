@@ -1,4 +1,5 @@
 """Generate DictaFlow icon as .ico file"""
+import os
 from PIL import Image, ImageDraw
 
 sizes = [16, 32, 48, 64, 128, 256]
@@ -50,9 +51,10 @@ for size in sizes:
     
     images.append(img)
 
-# Save as .ico
+# Save as .ico (relative path, works from any directory)
+os.makedirs("assets", exist_ok=True)
 images[-1].save(
-    r"B:\Aplicaciones\dictaflow\assets\icon.ico",
+    os.path.join("assets", "icon.ico"),
     format="ICO",
     sizes=[(s, s) for s in sizes],
     append_images=images[:-1]

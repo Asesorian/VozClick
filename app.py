@@ -1,5 +1,5 @@
 """
-DictaFlow v2 — Lo mejor de sflow + VozFlow + Refiner IA
+VozClick v2 — Lo mejor de sflow + VozFlow + Refiner IA
 """
 import sys
 import os
@@ -21,7 +21,7 @@ from PyQt6.QtCore import QObject, QTimer, pyqtSignal, pyqtSlot, Qt
 from config import APP_NAME, DASHBOARD_PORT, DEFAULT_LANGUAGE, DEFAULT_REFINER_PROVIDER
 
 
-class DictaFlowApp(QObject):
+class VozClickApp(QObject):
     transcription_done = pyqtSignal(str, float)
     transcription_error = pyqtSignal(str)
     refinement_done = pyqtSignal(str, str)
@@ -273,8 +273,8 @@ def main():
     app.setQuitOnLastWindowClosed(False)
     signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-    dictaflow = DictaFlowApp(qt_app=app)
-    dictaflow.start()
+    vozclick = VozClickApp(qt_app=app)
+    vozclick.start()
 
     sys.exit(app.exec())
 

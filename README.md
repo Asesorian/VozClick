@@ -1,8 +1,10 @@
-# 🎙️ DictaFlow — Dictado por voz para Windows
+# 🎙️ VozClick — Dictado por voz para Windows
 
 Habla y el texto aparece donde tengas el cursor. En cualquier app.
 
-DictaFlow nace de [sflow para macOS](https://github.com/daniel-carreon/sflow), la herramienta de dictado por voz creada por Daniel Carreón. Dos miembros de la comunidad [SaaS Factory](https://www.skool.com/saas-factory) la portaron a Windows de forma independiente: [sflow Windows](https://github.com/jtabasco/sflow) por Joel Tabasco y [VozFlow](https://github.com/jorgetorresbiz/vozflow) por Jorge Torres. DictaFlow combina lo mejor de ambas en una sola herramienta: el motor Win32 nativo y el dashboard de Joel con la configuración visual y el selector de micrófono de Jorge.
+VozClick nace de [sflow para macOS](https://github.com/daniel-carreon/sflow), la herramienta de dictado por voz creada por Daniel Carreón. Dos miembros de la comunidad [SaaS Factory](https://www.skool.com/saas-factory) la portaron a Windows de forma independiente: [sflow Windows](https://github.com/jtabasco/sflow) por Joel Tabasco y [VozFlow](https://github.com/jorgetorresbiz/vozflow) por Jorge Torres. VozClick combina lo mejor de ambas en una sola herramienta: el motor Win32 nativo y el dashboard de Joel con la configuración visual y el selector de micrófono de Jorge.
+
+> **Nota:** Este proyecto se llamó previamente "DictaFlow". Renombrado a VozClick para evitar colisión con un producto comercial homónimo no relacionado.
 
 ---
 
@@ -21,19 +23,19 @@ DictaFlow nace de [sflow para macOS](https://github.com/daniel-carreon/sflow), l
 | Selector de idioma (es/en/pt/fr/de/it/ca) | VozFlow |
 | Diálogo de configuración con pestañas | VozFlow |
 | Inicio con Windows | VozFlow |
-| Arranque sin micrófono (espera conexión BT) | DictaFlow |
-| Hotkey Ctrl+Alt (no genera caracteres) | DictaFlow |
-| Eliminar transcripciones individuales o todas | DictaFlow |
-| Instalador con acceso directo automático (con icono) | DictaFlow |
-| Multi-provider: Groq Llama (gratis), OpenAI, Anthropic | DictaFlow |
+| Arranque sin micrófono (espera conexión BT) | VozClick |
+| Hotkey Ctrl+Alt (no genera caracteres) | VozClick |
+| Eliminar transcripciones individuales o todas | VozClick |
+| Instalador con acceso directo automático (con icono) | VozClick |
+| Multi-provider: Groq Llama (gratis), OpenAI, Anthropic | VozClick |
 
 ---
 
 ## 🚀 Instalación
 
 ```bash
-git clone https://github.com/Asesorian/dictaflow.git
-cd dictaflow
+git clone https://github.com/Asesorian/vozclick.git
+cd vozclick
 install.bat
 ```
 
@@ -42,13 +44,13 @@ El instalador:
 2. Instala las dependencias automáticamente
 3. Genera el icono de la app
 4. Te pide la API key de Groq (gratis)
-5. Te pregunta si quieres crear un acceso directo en el escritorio (con icono de micrófono) para arrancar DictaFlow sin terminal
+5. Te pregunta si quieres crear un acceso directo en el escritorio (con icono de micrófono) para arrancar VozClick sin terminal
 
 ---
 
 ## 🔑 API Key (gratis)
 
-DictaFlow usa [Groq Whisper](https://console.groq.com) para transcribir (~300 minutos/día gratis):
+VozClick usa [Groq Whisper](https://console.groq.com) para transcribir (~300 minutos/día gratis):
 
 1. Ve a [console.groq.com/keys](https://console.groq.com/keys)
 2. Crea una cuenta gratuita
@@ -85,7 +87,7 @@ Clic derecho en el icono de la bandeja del sistema → ⚙️ Configuración
 ## 📁 Estructura
 
 ```
-dictaflow/
+vozclick/
 ├── install.bat              ← Ejecutar para instalar
 ├── launch.vbs               ← Arranca sin ventana (acceso directo)
 ├── app.py                   ← Punto de entrada (deferred loading)
@@ -128,7 +130,7 @@ dictaflow/
 build_exe.bat
 ```
 
-Genera `dist/DictaFlow.exe` — no necesita Python instalado.
+Genera `dist/VozClick.exe` — no necesita Python instalado.
 
 ---
 
@@ -137,7 +139,7 @@ Genera `dist/DictaFlow.exe` — no necesita Python instalado.
 - **[sflow macOS](https://github.com/daniel-carreon/sflow)** por Daniel Carreón — concepto original, Refiner IA, waveform, pill animado
 - **[sflow Windows](https://github.com/jtabasco/sflow)** por Joel Tabasco — Win32 nativo, dashboard, pill UI
 - **[VozFlow](https://github.com/jorgetorresbiz/vozflow)** por Jorge Torres — Settings GUI, selector micrófono, inicio con Windows
-- **DictaFlow** — Merge + mejoras por Jordi (comunidad [SaaS Factory](https://www.skool.com/saas-factory))
+- **VozClick** — Merge + mejoras por Jordi (comunidad [SaaS Factory](https://www.skool.com/saas-factory))
 
 ---
 

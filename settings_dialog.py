@@ -1,5 +1,5 @@
 """
-DictaFlow — Diálogo de Configuración v2
+VozClick — Diálogo de Configuración v2
 Incluye: API key, micrófono, idioma, inicio Windows, Refiner IA (multi-provider)
 """
 import os

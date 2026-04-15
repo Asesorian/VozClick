@@ -1,4 +1,4 @@
-"""Generate DictaFlow icon as .ico file"""
+"""Generate VozClick icon as .ico file"""
 import os
 from PIL import Image, ImageDraw
 

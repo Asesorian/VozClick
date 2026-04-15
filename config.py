@@ -1,14 +1,14 @@
 """
-DictaFlow — Configuración centralizada
+VozClick — Configuración centralizada
 Lo mejor de sflow + VozFlow + Refiner IA
 """
 import os
 from pathlib import Path
 
 # App info
-APP_NAME = "DictaFlow"
+APP_NAME = "VozClick"
 APP_VERSION = "2.0.0"
-APP_DIR = Path.home() / ".dictaflow"
+APP_DIR = Path.home() / ".vozclick"
 APP_DIR.mkdir(exist_ok=True)
 
 # Audio

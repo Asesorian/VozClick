@@ -1,5 +1,5 @@
 """
-DictaFlow — System Tray
+VozClick — System Tray
 Combina: sflow (dashboard) + VozFlow (settings dialog)
 """
 import os

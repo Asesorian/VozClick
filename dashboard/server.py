@@ -1,4 +1,4 @@
-"""DictaFlow — Dashboard Flask (historial transcripciones)"""
+"""VozClick — Dashboard Flask (historial transcripciones)"""
 import logging
 import threading
 from flask import Flask, render_template, request, redirect, url_for

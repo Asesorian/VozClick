@@ -2,7 +2,7 @@
 chcp 65001 >nul
 echo.
 echo  ╔════════════════════════════════════════╗
-echo  ║        DictaFlow — Instalación         ║
+echo  ║         VozClick — Instalación         ║
 echo  ║   Dictado por voz para Windows         ║
 echo  ╚════════════════════════════════════════╝
 echo.
@@ -68,12 +68,12 @@ if /i "%SHORTCUT%"=="n" goto :skip_shortcut
 
 :: Create shortcut via VBScript
 echo Set ws = CreateObject("WScript.Shell") > "%TEMP%\create_shortcut.vbs"
-echo Set sc = ws.CreateShortcut(ws.SpecialFolders("Desktop") ^& "\DictaFlow.lnk") >> "%TEMP%\create_shortcut.vbs"
+echo Set sc = ws.CreateShortcut(ws.SpecialFolders("Desktop") ^& "\VozClick.lnk") >> "%TEMP%\create_shortcut.vbs"
 echo sc.TargetPath = "wscript.exe" >> "%TEMP%\create_shortcut.vbs"
 echo sc.Arguments = "%CD%\launch.vbs" >> "%TEMP%\create_shortcut.vbs"
 echo sc.WorkingDirectory = "%CD%" >> "%TEMP%\create_shortcut.vbs"
 echo sc.IconLocation = "%CD%\assets\icon.ico,0" >> "%TEMP%\create_shortcut.vbs"
-echo sc.Description = "DictaFlow - Dictado por voz" >> "%TEMP%\create_shortcut.vbs"
+echo sc.Description = "VozClick - Dictado por voz" >> "%TEMP%\create_shortcut.vbs"
 echo sc.Save >> "%TEMP%\create_shortcut.vbs"
 cscript //nologo "%TEMP%\create_shortcut.vbs"
 del "%TEMP%\create_shortcut.vbs"
@@ -85,7 +85,7 @@ echo  ╔═══════════════════════�
 echo  ║     Instalación completada!            ║
 echo  ║                                        ║
 echo  ║  Para iniciar:                         ║
-echo  ║    - Doble clic en DictaFlow (escritorio) ║
+echo  ║    - Doble clic en VozClick (escritorio) ║
 echo  ║    - O ejecuta: python app.py          ║
 echo  ║                                        ║
 echo  ║  Atajos:                               ║

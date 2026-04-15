@@ -1,5 +1,5 @@
 """
-DictaFlow — Base de datos SQLite
+VozClick — Base de datos SQLite
 Historial de transcripciones + configuración persistente.
 Base: sflow (Joel Tabasco)
 """
@@ -9,7 +9,7 @@ from datetime import datetime
 from config import APP_DIR
 
 PAGE_SIZE = 50
-DB_PATH = str(APP_DIR / "dictaflow.db")
+DB_PATH = str(APP_DIR / "vozclick.db")
 
 
 class Database:
